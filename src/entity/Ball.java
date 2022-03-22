@@ -13,28 +13,28 @@ public class Ball extends InertEntity {
 
 
 
-    public Ball(Player1 player1, KeyHandler keyH) {
+    public Ball(Player player, KeyHandler keyH) {
         sizeX=size;
         sizeY=size;
         speedX=0;
         speedY=0;
-        virtualX=x= player1.x;
-        virtualY=y= player1.y;
-        if (keyH.downPlayer){
-            speedY+= player1.speed+ player1.kickingSpeed;
-            virtualY=y+= player1.sizeY;
+        virtualX=x= player.x;
+        virtualY=y= player.y;
+        if (keyH.downPlayer1){
+            speedY+= player.speed+ player.kickingSpeed;
+            virtualY=y+= player.sizeY;
             }
-        if (keyH.upPlayer){
-            speedY-= player1.speed+ player1.kickingSpeed;
+        if (keyH.upPlayer1){
+            speedY-= player.speed+ player.kickingSpeed;
             virtualY=y-= sizeY;
         }
-        if (keyH.leftPlayer){
-            speedX-= player1.speed+ player1.kickingSpeed;
+        if (keyH.leftPlayer1){
+            speedX-= player.speed+ player.kickingSpeed;
             virtualX=x-=sizeX;
         }
-        if (keyH.rightPlayer){
-            speedX+= player1.speed+ player1.kickingSpeed;
-            virtualX=x+= player1.sizeX;
+        if (keyH.rightPlayer1){
+            speedX+= player.speed+ player.kickingSpeed;
+            virtualX=x+= player.sizeX;
         }
     }
     public void update() {

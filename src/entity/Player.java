@@ -9,8 +9,6 @@ public abstract class Player extends Entity{
     //player Color
     public Color playerColor;
 
-    //ball initialisation
-    public Ball ball = null;
     //boost countdown
     int timer =0;
     public void catchBall(){timer=30;hasBall=true;}
@@ -34,8 +32,6 @@ public abstract class Player extends Entity{
     public void draw(Graphics2D g2) {
         g2.setColor(playerColor);
         g2.fillRect(x,y,sizeX, sizeY);
-        if (!hasBall){
-            ball.draw(g2);
-        }
+
     }
 }

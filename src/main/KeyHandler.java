@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
 
-    public boolean fire, upPlayer, downPlayer, leftPlayer, rightPlayer, upKeeper1, downKeeper1,upKeeper2, downKeeper2;
+    public boolean fire, upPlayer1, downPlayer1, leftPlayer1, rightPlayer1, upKeeper1, downKeeper1,upKeeper2, downKeeper2;
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -16,10 +16,14 @@ public class KeyHandler implements KeyListener {
 
         int code= e.getKeyCode();
 
-        if (code== KeyEvent.VK_W){upPlayer =true;}
-        if (code== KeyEvent.VK_S){downPlayer = true;}
-        if (code== KeyEvent.VK_A){leftPlayer =true;}
-        if (code== KeyEvent.VK_D){rightPlayer =true;}
+        if (code== KeyEvent.VK_W){
+            upPlayer1 =true;}
+        if (code== KeyEvent.VK_S){
+            downPlayer1 = true;}
+        if (code== KeyEvent.VK_A){
+            leftPlayer1 =true;}
+        if (code== KeyEvent.VK_D){
+            rightPlayer1 =true;}
         if (code== KeyEvent.VK_UP) {upKeeper2 =true;}
         if (code== KeyEvent.VK_DOWN) {downKeeper2 =true;}
         if (code== KeyEvent.VK_K) {fire=true;}
@@ -32,10 +36,14 @@ public class KeyHandler implements KeyListener {
     public void keyReleased(KeyEvent e) {
         int code= e.getKeyCode();
 
-        if (code== KeyEvent.VK_W){upPlayer =false;}
-        if (code== KeyEvent.VK_S){downPlayer = false;}
-        if (code== KeyEvent.VK_A){leftPlayer =false;}
-        if (code== KeyEvent.VK_D){rightPlayer =false;}
+        if (code== KeyEvent.VK_W){
+            upPlayer1 =false;}
+        if (code== KeyEvent.VK_S){
+            downPlayer1 = false;}
+        if (code== KeyEvent.VK_A){
+            leftPlayer1 =false;}
+        if (code== KeyEvent.VK_D){
+            rightPlayer1 =false;}
         if (code== KeyEvent.VK_UP) {upKeeper2 =false;}
         if (code== KeyEvent.VK_DOWN) {downKeeper2 =false;}
         if (code== KeyEvent.VK_K) {fire=false;}

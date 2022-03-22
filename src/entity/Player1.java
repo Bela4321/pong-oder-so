@@ -7,61 +7,40 @@ import java.awt.*;
 
 public class Player1 extends Player{
 
-    //boost countdown
-    int timer =0;
-    public void catchBall(){timer=30;hasBall=true;}
-    //speed boost added on player movement
-    int kickingSpeed= 2;
-    public boolean hasBall = true;
-
-    KeyHandler keyH;
 
     public Player1(KeyHandler keyH) {
-        this.keyH= keyH;
-        sizeX=GamePanel.tileSize;
-        sizeY=GamePanel.tileSize;
-
-        setDefaultValues();
+        super(keyH);
+        playerColor= Color.RED;
     }
     public void setDefaultValues() {
         x =300;
         y=100;
         speed = 4;
-        playerColor = Color.RED;
+        hasBall=true;
     }
     public void update() {
         //update player Movement
-        if (keyH.upPlayer){
+        if (keyH.upPlayer1){
             y-=speed;
         }
-        if (keyH.downPlayer){
+        if (keyH.downPlayer1){
             y+=speed;
         }
-        if (keyH.leftPlayer){
+        if (keyH.leftPlayer1){
             x-=speed;
         }
-        if (keyH.rightPlayer){
+        if (keyH.rightPlayer1){
             x+=speed;
         }
         //create Ball
         if (hasBall&& keyH.fire) {
-            ball = new Ball(this, keyH);
+            GamePanel.ball = new Ball(this, keyH);
             hasBall =false;
             if (timer>0){
-                ball.speedX*=2;
-                ball.speedY*=2;
+                GamePanel.ball.speedX*=2;
+                GamePanel.ball.speedY*=2;
             }
         }
-        if(!hasBall){
-            ball.update();
-        }
         timer--;
-    }
-    public void draw(Graphics2D g2) {
-        g2.setColor(Color.WHITE);
-        g2.fillRect(x,y,sizeX, sizeY);
-        if (!hasBall){
-            ball.draw(g2);
-        }
     }
 }
