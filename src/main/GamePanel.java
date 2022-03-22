@@ -1,5 +1,6 @@
 package main;
 
+import display.Scoreboard;
 import entity.*;
 
 import javax.swing.*;
@@ -12,8 +13,8 @@ public class GamePanel extends JPanel implements Runnable {
     final static int scale = 3;
 
     public static final int tileSize = originalTileSize*scale; ///48x48 tile size
-    final static int maxScreenCol = 16;
-    final static int maxScreenRow = 12;
+    final static int maxScreenCol = 32;
+    final static int maxScreenRow = 16;
     public static final int screenWidth = tileSize*maxScreenCol; //768 pixels
     public static final int screenHeight = tileSize*maxScreenRow; //576 pixels
 
@@ -30,10 +31,12 @@ public class GamePanel extends JPanel implements Runnable {
     //Player2
     Player2 player2= new Player2(keyH);
     //goalkeeper initialisation
-    Goalkeeper keeper1 = new Goalkeeper1(keyH,70,150);
-    Goalkeeper keeper2 = new Goalkeeper2(keyH, 690,150);
+    Goalkeeper keeper1 = new Goalkeeper1(keyH);
+    Goalkeeper keeper2 = new Goalkeeper2(keyH);
     //initialise Ball
     public static Ball ball = null;
+    //initialise Scoreborad
+    public static Scoreboard scoreboard = new Scoreboard();
 
 
     //displayed Window initialisation
@@ -116,6 +119,7 @@ public class GamePanel extends JPanel implements Runnable {
         keeper1.draw(g2);
         keeper2.draw(g2);
         if (ball!=null){ball.draw(g2);}
+        Scoreboard.draw(g2);
 
         g2.dispose();
     }

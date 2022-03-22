@@ -12,32 +12,36 @@ public class Player2 extends Player{
         playerColor = Color.BLUE;
     }
     public void setDefaultValues() {
-        x =450;
-        y=200;
+        x =GamePanel.screenWidth/10*8-sizeX;
+        y=(GamePanel.screenHeight-sizeY)/2;
         speed = 4;
         hasBall = false;
     }
     public void update() {
-        //update player Movement
-        if (keyH.upPlayer1){
+        velocityX = velocityY =0;
+        //update player Movement+variable
+        if (keyH.upPlayer2){
             y-=speed;
+            velocityY -=speed;
         }
-        if (keyH.downPlayer1){
+        if (keyH.downPlayer2){
             y+=speed;
+            velocityY += speed;
         }
-        if (keyH.leftPlayer1){
+        if (keyH.leftPlayer2){
             x-=speed;
+            velocityX -= speed;
         }
-        if (keyH.rightPlayer1){
+        if (keyH.rightPlayer2){
             x+=speed;
+            velocityX +=speed;
         }
         //create Ball
-        if (hasBall&& keyH.fire) {
-            GamePanel.ball = new Ball(this, keyH);
+        if (hasBall&& keyH.firePlayer2) {
+            GamePanel.ball = new Ball(this);
             hasBall =false;
             if (timer>0){
-                GamePanel.ball.speedX*=2;
-                GamePanel.ball.speedY*=2;
+                GamePanel.ball.speedX*=1.5;
             }
         }
         timer--;

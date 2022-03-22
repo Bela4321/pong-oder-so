@@ -1,7 +1,7 @@
 package entity;
 
+import display.Scoreboard;
 import main.GamePanel;
-import main.KeyHandler;
 
 import java.awt.*;
 
@@ -13,26 +13,26 @@ public class Ball extends InertEntity {
 
 
 
-    public Ball(Player player, KeyHandler keyH) {
+    public Ball(Player player) {
         sizeX=size;
         sizeY=size;
-        speedX=0;
-        speedY=0;
+        speedX=player.velocityX;
+        speedY=player.velocityY;
         virtualX=x= player.x;
         virtualY=y= player.y;
-        if (keyH.downPlayer1){
+        if (player.velocityY>0.01){
             speedY+= player.speed+ player.kickingSpeed;
             virtualY=y+= player.sizeY;
             }
-        if (keyH.upPlayer1){
+        if (player.velocityY<-0.01){
             speedY-= player.speed+ player.kickingSpeed;
             virtualY=y-= sizeY;
         }
-        if (keyH.leftPlayer1){
+        if (player.velocityX<-0.01){
             speedX-= player.speed+ player.kickingSpeed;
             virtualX=x-=sizeX;
         }
-        if (keyH.rightPlayer1){
+        if (player.velocityX>0.01){
             speedX+= player.speed+ player.kickingSpeed;
             virtualX=x+= player.sizeX;
         }
@@ -45,8 +45,13 @@ public class Ball extends InertEntity {
         if (virtualY<=0||virtualY+size>=GamePanel.screenHeight) {
             speedY*=-1;
         }
-        if (virtualX<=0||virtualX+size>=GamePanel.screenWidth) {
+        if (virtualX<=0) {
             speedX*=-1;
+            Scoreboard.player2Scored();
+        }
+        if (virtualX+size>=GamePanel.screenWidth) {
+            speedX*=-1;
+            Scoreboard.player1Scored();
         }
         x=(int)Math.round(virtualX);
         y=(int)Math.round(virtualY);

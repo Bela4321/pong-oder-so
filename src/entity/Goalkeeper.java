@@ -12,25 +12,15 @@ public abstract class Goalkeeper extends Entity{
 
 
 
-    public Goalkeeper(KeyHandler keyH,int startX, int startY) {
+    public Goalkeeper(KeyHandler keyH) {
         sizeX=GamePanel.tileSize/2;
         sizeY=GamePanel.tileSize*3;
         this.keyH= keyH;
-        x = startX;
-        y = startY;
         speed = 8;
     }
 
     //updates location
-    public abstract void update(); /*{
-        if (keyH.upKeeper1){
-            y-=speed;
-        }
-        if (keyH.downKeeper1){
-            y+=speed;
-        }
-
-    }*/
+    public abstract void update();
     //draws Goalkeeper
     public void draw(Graphics2D g2) {
         g2.setColor(Color.WHITE);

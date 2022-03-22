@@ -1,10 +1,13 @@
 package entity;
 
+import main.GamePanel;
 import main.KeyHandler;
 
 public class Goalkeeper2 extends Goalkeeper{
-    public Goalkeeper2(KeyHandler keyH, int startX, int startY) {
-        super(keyH, startX, startY);
+    public Goalkeeper2(KeyHandler keyH) {
+        super(keyH);
+        x= (int) (GamePanel.screenWidth*0.9)-sizeX;
+        y= (GamePanel.screenHeight/2-sizeY/2);
     }
 
     public void update() {
@@ -13,6 +16,13 @@ public class Goalkeeper2 extends Goalkeeper{
         }
         if (keyH.downKeeper2){
             y+=speed;
+        }
+        if (GamePanel.ball!=null&&!(keyH.upKeeper2||keyH.downKeeper2)){
+            if(GamePanel.ball.y+GamePanel.ball.sizeY/2>y+sizeY/2){
+                y+=speed;
+            } else if (GamePanel.ball.y+GamePanel.ball.sizeY/2<y+sizeY/2){
+                y-=speed;
+            }
         }
 
     }

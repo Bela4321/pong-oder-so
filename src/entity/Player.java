@@ -6,6 +6,9 @@ import main.KeyHandler;
 import java.awt.*;
 
 public abstract class Player extends Entity{
+    //player Movement
+    int velocityX =0, velocityY =0;
+
     //player Color
     public Color playerColor;
 
