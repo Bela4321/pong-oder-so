@@ -26,10 +26,13 @@ public class GamePanel extends JPanel implements Runnable {
     //thread for gameloop
     Thread gameThread;
     //free moving Player
-    Player player = new Player(keyH);
+    Player1 player1 = new Player1(keyH);
     //goalkeeper initialisation
     Goalkeeper keeper1 = new Goalkeeper1(keyH,70,150);
     Goalkeeper keeper2 = new Goalkeeper2(keyH, 690,150);
+    //initialise Ball
+    public static Ball ball = null;
+
 
     //displayed Window initialisation
     public GamePanel() {
@@ -71,7 +74,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     //update information
     public void update(){
-        player.update();
+        player1.update();
         keeper1.update();
         keeper2.update();
         collisionUpdate();
@@ -79,18 +82,17 @@ public class GamePanel extends JPanel implements Runnable {
 
     //check different collisions and update accordingly
     public void collisionUpdate(){
-        if(CollissionCheck.check(keeper1, player.ball)){
-            player.ball.speedX=Math.abs(player.ball.speedX);
-            player.ball.speedY+=CollissionCheck.calcYchange(keeper1, player.ball);
+        if(CollissionCheck.check(keeper1, player1.ball)){
+            player1.ball.speedX=Math.abs(player1.ball.speedX);
+            player1.ball.speedY+=CollissionCheck.calcYchange(keeper1, player1.ball);
         }
-        else if (CollissionCheck.check(keeper2,player.ball)){
-            player.ball.speedX=-Math.abs(player.ball.speedX);
-            player.ball.speedY+=CollissionCheck.calcYchange(keeper2, player.ball);
+        else if (CollissionCheck.check(keeper2, player1.ball)){
+            player1.ball.speedX=-Math.abs(player1.ball.speedX);
+            player1.ball.speedY+=CollissionCheck.calcYchange(keeper2, player1.ball);
         }
-        if (CollissionCheck.check(player,player.ball)) {
-            player.ball= null;
-            player.hasBall=true;
-            player.catchBall();
+        if (CollissionCheck.check(player1, player1.ball)) {
+            player1.ball= null;
+            player1.catchBall();
         }
     }
 
@@ -100,7 +102,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D) g;
         //also draws Ball
-        player.draw(g2);
+        player1.draw(g2);
         keeper1.draw(g2);
         keeper2.draw(g2);
 

@@ -20,11 +20,11 @@ public class KeyHandler implements KeyListener {
         if (code== KeyEvent.VK_S){downPlayer = true;}
         if (code== KeyEvent.VK_A){leftPlayer =true;}
         if (code== KeyEvent.VK_D){rightPlayer =true;}
-        if (code== KeyEvent.VK_UP) {upKeeper1 =true;}
-        if (code== KeyEvent.VK_DOWN) {downKeeper1 =true;}
+        if (code== KeyEvent.VK_UP) {upKeeper2 =true;}
+        if (code== KeyEvent.VK_DOWN) {downKeeper2 =true;}
         if (code== KeyEvent.VK_K) {fire=true;}
-        if (code== KeyEvent.VK_T) {upKeeper2=true;}
-        if (code== KeyEvent.VK_G) {downKeeper2=true;}
+        if (code== KeyEvent.VK_T) {upKeeper1=true;}
+        if (code== KeyEvent.VK_G) {downKeeper1=true;}
 
     }
 
@@ -36,11 +36,11 @@ public class KeyHandler implements KeyListener {
         if (code== KeyEvent.VK_S){downPlayer = false;}
         if (code== KeyEvent.VK_A){leftPlayer =false;}
         if (code== KeyEvent.VK_D){rightPlayer =false;}
-        if (code== KeyEvent.VK_UP) {upKeeper1 =false;}
-        if (code== KeyEvent.VK_DOWN) {downKeeper1 =false;}
+        if (code== KeyEvent.VK_UP) {upKeeper2 =false;}
+        if (code== KeyEvent.VK_DOWN) {downKeeper2 =false;}
         if (code== KeyEvent.VK_K) {fire=false;}
-        if (code== KeyEvent.VK_T) {upKeeper2=false;}
-        if (code== KeyEvent.VK_G) {downKeeper2=false;}
+        if (code== KeyEvent.VK_T) {upKeeper1=false;}
+        if (code== KeyEvent.VK_G) {downKeeper1=false;}
 
     }
 }
