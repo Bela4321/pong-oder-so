@@ -22,10 +22,10 @@ public class Player1 extends Player{
     }
     public void getPlayerImage(){
         try{
-            playerLeft= ImageIO.read(getClass().getResourceAsStream("/res/Player2_left.png"));
-            playerRight= ImageIO.read(getClass().getResourceAsStream("/res/Player2_right.png"));
-            playerLeftBall= ImageIO.read(getClass().getResourceAsStream("/res/Player2_left_ball.png"));
-            playerRightBall= ImageIO.read(getClass().getResourceAsStream("/res/Player2_right_ball.png"));
+            playerLeft= ImageIO.read(getClass().getResourceAsStream("/res/Player1_left.png"));
+            playerRight= ImageIO.read(getClass().getResourceAsStream("/res/Player1_right.png"));
+            playerLeftBall= ImageIO.read(getClass().getResourceAsStream("/res/Player1_left_ball.png"));
+            playerRightBall= ImageIO.read(getClass().getResourceAsStream("/res/Player1_right_ball.png"));
         }catch(Exception e){
             e.printStackTrace();
         }
