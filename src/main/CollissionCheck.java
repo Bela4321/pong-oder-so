@@ -8,7 +8,7 @@ public class CollissionCheck {
 
     public static double calcYchange(Goalkeeper keeper, Ball ball) {
         double relativeHit= ((keeper.y+ keeper.sizeY/2)-(ball.virtualY+ ball.sizeY/2))/ keeper.sizeY;
-        return -3*Math.sin(relativeHit);
+        return -7*Math.sin(relativeHit);
     }
 
     public static boolean check(Collidable entity1, Collidable entity2) {

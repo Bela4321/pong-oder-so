@@ -1,5 +1,7 @@
 package main;
 
+import display.Scoreboard;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -16,6 +18,40 @@ public class KeyHandler implements KeyListener {
 
         int code= e.getKeyCode();
 
+        //Title State
+        if (GamePanel.gameState==GamePanel.TITLESTATE) {
+            if (code== KeyEvent.VK_W){
+                TitleScreen.commandNumber--;}
+            if (code== KeyEvent.VK_S){
+                TitleScreen.commandNumber++;}
+            if (TitleScreen.commandNumber<0){TitleScreen.commandNumber=2;}
+            if (TitleScreen.commandNumber>2) {TitleScreen.commandNumber=0;}
+            if (code==KeyEvent.VK_ENTER) {
+                if (TitleScreen.commandNumber==0){GamePanel.reset();GamePanel.gameState=GamePanel.PLAYSTATE;}
+                if (TitleScreen.commandNumber==1){GamePanel.gameState=GamePanel.PLAYSTATE;}
+                if (TitleScreen.commandNumber==2) {GamePanel.gameState=GamePanel.SETTINGSSTATE;}
+            }
+        }
+
+        //Settings State
+        if(GamePanel.gameState==GamePanel.SETTINGSSTATE){
+            if (code== KeyEvent.VK_W){
+                SettingsScreen.commandNumber--;}
+            if (code== KeyEvent.VK_S){
+                SettingsScreen.commandNumber++;}
+            if (SettingsScreen.commandNumber<0){SettingsScreen.commandNumber=2;}
+            if (SettingsScreen.commandNumber>2) {SettingsScreen.commandNumber=0;}
+
+            if (code==KeyEvent.VK_SPACE) {
+                if (SettingsScreen.commandNumber==0){GamePanel.persuingKeepers=!GamePanel.persuingKeepers;}
+                if (SettingsScreen.commandNumber==1){GamePanel.boostMod++;if (GamePanel.boostMod>20){GamePanel.boostMod=0;}}
+                if (SettingsScreen.commandNumber==2) {GamePanel.gameState=GamePanel.TITLESTATE;}
+            }
+        }
+        if (code==KeyEvent.VK_ESCAPE){
+            GamePanel.gameState=GamePanel.TITLESTATE;
+        }
+
         if (code== KeyEvent.VK_E){upPlayer1 =true;}
         if (code== KeyEvent.VK_D){downPlayer1 = true;}
         if (code== KeyEvent.VK_S){leftPlayer1 =true;}
@@ -30,6 +66,8 @@ public class KeyHandler implements KeyListener {
         if (code== KeyEvent.VK_A) {downKeeper1=true;}
         if (code== KeyEvent.VK_UP) {upKeeper2 =true;}
         if (code== KeyEvent.VK_DOWN) {downKeeper2 =true;}
+        if (code== KeyEvent.VK_SPACE) {Scoreboard.reset();}
+
 
     }
 

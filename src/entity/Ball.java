@@ -3,9 +3,13 @@ package entity;
 import display.Scoreboard;
 import main.GamePanel;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Ball extends InertEntity {
+    BufferedImage ballIMG;
+
     public int size= 40;
 
     public double virtualX;
@@ -16,25 +20,30 @@ public class Ball extends InertEntity {
     public Ball(Player player) {
         sizeX=size;
         sizeY=size;
-        speedX=player.velocityX;
-        speedY=player.velocityY;
+        speedX=player.directionX;
+        speedY=player.directionY;
         virtualX=x= player.x;
         virtualY=y= player.y;
-        if (player.velocityY>0.01){
+        if (player.directionY>0.01){
             speedY+= player.speed+ player.kickingSpeed;
             virtualY=y+= player.sizeY;
             }
-        if (player.velocityY<-0.01){
+        if (player.directionY<-0.01){
             speedY-= player.speed+ player.kickingSpeed;
             virtualY=y-= sizeY;
         }
-        if (player.velocityX<-0.01){
+        if (player.directionX<-0.01){
             speedX-= player.speed+ player.kickingSpeed;
             virtualX=x-=sizeX;
         }
-        if (player.velocityX>0.01){
+        if (player.directionX>0.01){
             speedX+= player.speed+ player.kickingSpeed;
             virtualX=x+= player.sizeX;
+        }
+        try {
+            ballIMG= ImageIO.read(getClass().getResourceAsStream("/res/Ball.png"));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     public void update() {
@@ -48,16 +57,27 @@ public class Ball extends InertEntity {
         if (virtualX<=0) {
             speedX*=-1;
             Scoreboard.player2Scored();
+            GamePanel.kickoff(1);
         }
         if (virtualX+size>=GamePanel.screenWidth) {
             speedX*=-1;
             Scoreboard.player1Scored();
+            GamePanel.kickoff(2);
         }
+        //enforce x-y boundarys
+        double xMin=0;
+        double xMax=GamePanel.screenWidth;
+        double yMin=0;
+        double yMax=GamePanel.screenHeight;
+
+        virtualX=Math.max(xMin,Math.min(xMax,virtualX));
+        virtualY=Math.max(yMin,Math.min(yMax,virtualY));
+
+
         x=(int)Math.round(virtualX);
         y=(int)Math.round(virtualY);
     }
     public void draw(Graphics2D g2) {
-        g2.setColor(Color.GREEN);
-        g2.fillRect(x,y,size, size);
+        g2.drawImage(ballIMG,x,y,size, size,null);
     }
 }

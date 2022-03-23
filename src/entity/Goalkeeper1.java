@@ -18,13 +18,14 @@ public class Goalkeeper1 extends Goalkeeper{
         if (keyH.downKeeper1){
             y+=speed;
         }
-        if (GamePanel.ball!=null&&!(keyH.upKeeper1||keyH.downKeeper1)){
-            if(GamePanel.ball.y+GamePanel.ball.sizeY/2>y+sizeY/2){
-                y+=speed;
-            } else if (GamePanel.ball.y+GamePanel.ball.sizeY/2<y+sizeY/2){
-                y-=speed;
+        if(GamePanel.persuingKeepers){
+            if (GamePanel.ball!=null&&!(keyH.upKeeper1||keyH.downKeeper1)){
+                if(GamePanel.ball.y+GamePanel.ball.sizeY/2>y+sizeY/2+4){
+                    y+=speed;
+                } else if (GamePanel.ball.y+GamePanel.ball.sizeY/2<y+sizeY/2-4){
+                    y-=speed;
+                }
             }
         }
-
     }
 }
