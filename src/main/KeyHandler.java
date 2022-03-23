@@ -29,7 +29,8 @@ public class KeyHandler implements KeyListener {
             if (code==KeyEvent.VK_ENTER) {
                 if (TitleScreen.commandNumber==0){GamePanel.reset();GamePanel.gameState=GamePanel.PLAYSTATE;}
                 if (TitleScreen.commandNumber==1){GamePanel.gameState=GamePanel.PLAYSTATE;}
-                if (TitleScreen.commandNumber==2) {GamePanel.gameState=GamePanel.SETTINGSSTATE;}
+                if (TitleScreen.commandNumber==2) {GamePanel.gameState=GamePanel.SETTINGSSTATE;TitleScreen.commandNumber=0;}
+
             }
         }
 
@@ -42,10 +43,11 @@ public class KeyHandler implements KeyListener {
             if (SettingsScreen.commandNumber<0){SettingsScreen.commandNumber=2;}
             if (SettingsScreen.commandNumber>2) {SettingsScreen.commandNumber=0;}
 
-            if (code==KeyEvent.VK_SPACE) {
+            if (code==KeyEvent.VK_ENTER) {
                 if (SettingsScreen.commandNumber==0){GamePanel.persuingKeepers=!GamePanel.persuingKeepers;}
                 if (SettingsScreen.commandNumber==1){GamePanel.boostMod++;if (GamePanel.boostMod>20){GamePanel.boostMod=0;}}
-                if (SettingsScreen.commandNumber==2) {GamePanel.gameState=GamePanel.TITLESTATE;}
+                if (SettingsScreen.commandNumber==2){GamePanel.gameState=GamePanel.TITLESTATE;SettingsScreen.commandNumber=0;}
+
             }
         }
         if (code==KeyEvent.VK_ESCAPE){
@@ -66,7 +68,6 @@ public class KeyHandler implements KeyListener {
         if (code== KeyEvent.VK_A) {downKeeper1=true;}
         if (code== KeyEvent.VK_UP) {upKeeper2 =true;}
         if (code== KeyEvent.VK_DOWN) {downKeeper2 =true;}
-        if (code== KeyEvent.VK_SPACE) {Scoreboard.reset();}
 
 
     }
