@@ -41,7 +41,7 @@ public class Ball extends InertEntity {
             virtualX=x+= player.sizeX;
         }
         try {
-            ballIMG= ImageIO.read(getClass().getResourceAsStream("/res/Ball.png"));
+            ballIMG= ImageIO.read(getClass().getResourceAsStream("/res/textures/Ball.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,22 +53,30 @@ public class Ball extends InertEntity {
         //check collission with border
         if (virtualY<=0||virtualY+size>=GamePanel.screenHeight) {
             speedY*=-1;
+            GamePanel.sound.setFile(0);
+            GamePanel.sound.play();
         }
         if (virtualX<=0) {
             speedX*=-1;
             Scoreboard.player2Scored();
             GamePanel.kickoff(1);
+            GamePanel.sound.setFile(1);
+            GamePanel.sound.play();
         }
         if (virtualX+size>=GamePanel.screenWidth) {
             speedX*=-1;
             Scoreboard.player1Scored();
             GamePanel.kickoff(2);
+
+            GamePanel.sound.setFile(1);
+            GamePanel.sound.play();
         }
         //enforce x-y boundarys
         double xMin=0;
-        double xMax=GamePanel.screenWidth;
+        double xMax=GamePanel.screenWidth-sizeX;
         double yMin=0;
-        double yMax=GamePanel.screenHeight;
+        double yMax=GamePanel.screenHeight-sizeY;
+
 
         virtualX=Math.max(xMin,Math.min(xMax,virtualX));
         virtualY=Math.max(yMin,Math.min(yMax,virtualY));

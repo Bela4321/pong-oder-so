@@ -3,8 +3,11 @@ package main;
 import display.Scoreboard;
 import entity.*;
 
+import javax.imageio.IIOImage;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -15,8 +18,8 @@ public class GamePanel extends JPanel implements Runnable {
     public static final int tileSize = originalTileSize*scale; ///48x48 tile size
     final static int maxScreenCol = 32;
     final static int maxScreenRow = 16;
-    public static final int screenWidth = tileSize*maxScreenCol; //768 pixels
-    public static final int screenHeight = tileSize*maxScreenRow; //576 pixels
+    public static final int screenWidth = tileSize*maxScreenCol; //1536 pixels
+    public static final int screenHeight = tileSize*maxScreenRow; //768 pixels
 
 
     //FPS
@@ -24,6 +27,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     //keyHandler for inputs
     static KeyHandler keyH = new KeyHandler();
+    //sounds
+    public static Sound sound=new Sound();
     //thread for gameloop
     Thread gameThread;
     //free moving Player
@@ -134,12 +139,13 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D) g;
         if (gameState==PLAYSTATE) {
+            GamePanel.drawBackground(g2);
             player1.draw(g2);
             player2.draw(g2);
             keeper1.draw(g2);
             keeper2.draw(g2);
             if (ball != null) {ball.draw(g2);}
-            Scoreboard.draw(g2);
+            scoreboard.draw(g2);
         } else if(gameState==TITLESTATE){
             titleScreen.draw(g2);
         } else if (gameState==SETTINGSSTATE){
@@ -169,5 +175,16 @@ public class GamePanel extends JPanel implements Runnable {
         keeper1= new Goalkeeper1(keyH);
         keeper2= new Goalkeeper2(keyH);
         Scoreboard.reset();
+    }
+
+
+    public static void drawBackground(Graphics2D g2) {
+        BufferedImage backgroundImage = null;
+        try {
+            backgroundImage = ImageIO.read(GamePanel.class.getResourceAsStream("/res/textures/Background.png"));
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        g2.drawImage(backgroundImage,0,0,GamePanel.screenWidth,GamePanel.screenHeight,null);
     }
 }

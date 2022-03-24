@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public abstract class Player extends Entity{
-    //textures
+    //res.textures
     BufferedImage playerLeft,playerRight,playerLeftBall,playerRightBall;
 
     //player Movement
