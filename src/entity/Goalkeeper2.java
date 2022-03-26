@@ -19,9 +19,9 @@ public class Goalkeeper2 extends Goalkeeper{
         }
         if (GamePanel.persuingKeepers){
             if (GamePanel.ball!=null&&!(keyH.upKeeper2||keyH.downKeeper2)){
-                if(GamePanel.ball.y+GamePanel.ball.sizeY/2>y+sizeY/2+4){
+                if(GamePanel.ball.y+GamePanel.ball.sizeY/2+20>y+sizeY){
                     y+=speed;
-                } else if (GamePanel.ball.y+GamePanel.ball.sizeY/2<y+sizeY/2-4){
+                } else if (GamePanel.ball.y+GamePanel.ball.sizeY/2-20<y){
                     y-=speed;
                 }
             }

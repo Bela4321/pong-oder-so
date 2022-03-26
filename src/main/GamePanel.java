@@ -116,19 +116,19 @@ public class GamePanel extends JPanel implements Runnable {
     //check different collisions and update accordingly
     public void collisionUpdate(){
         if(CollissionCheck.check(keeper1, GamePanel.ball)){
-            GamePanel.ball.speedX=Math.abs(GamePanel.ball.speedX);
+            GamePanel.ball.speedX=Math.abs(GamePanel.ball.speedX)*1.1;
             GamePanel.ball.speedY+=CollissionCheck.calcYchange(keeper1, GamePanel.ball);
         }
         else if (CollissionCheck.check(keeper2, GamePanel.ball)){
-            GamePanel.ball.speedX=-Math.abs(GamePanel.ball.speedX);
+            GamePanel.ball.speedX=-Math.abs(GamePanel.ball.speedX)*1.1;
             GamePanel.ball.speedY+=CollissionCheck.calcYchange(keeper2, GamePanel.ball);
         }
         if (CollissionCheck.check(player1, GamePanel.ball)) {
-            player1.catchBall();
+            player1.catchBall(player1.getClass()!=ball.lastPlayer);
             GamePanel.ball= null;
         }
         if (CollissionCheck.check(player2, GamePanel.ball)) {
-            player2.catchBall();
+            player2.catchBall(player2.getClass()!=ball.lastPlayer);
             GamePanel.ball= null;
         }
     }

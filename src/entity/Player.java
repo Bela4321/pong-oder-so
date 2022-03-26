@@ -21,8 +21,9 @@ public abstract class Player extends Entity{
     int timer =0;
     int recievedSpeed= 0;
 
-    public void catchBall(){
-        timer=30;hasBall=true;
+    public void catchBall(boolean boost){
+        if(boost){timer=30;}
+        hasBall=true;
         recievedSpeed=(int)(Math.abs(GamePanel.ball.speedX)+Math.abs(GamePanel.ball.speedY));
         }
 

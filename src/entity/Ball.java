@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 
 public class Ball extends InertEntity {
     BufferedImage ballIMG;
+    public Class lastPlayer;
 
     public int size= 40;
 
@@ -18,6 +19,7 @@ public class Ball extends InertEntity {
 
 
     public Ball(Player player) {
+        lastPlayer = player.getClass();
         sizeX=size;
         sizeY=size;
         speedX=player.directionX;
