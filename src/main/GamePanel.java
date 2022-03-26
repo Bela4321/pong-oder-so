@@ -32,12 +32,12 @@ public class GamePanel extends JPanel implements Runnable {
     //thread for gameloop
     Thread gameThread;
     //free moving Player
-    static Player1 player1 = new Player1(keyH);
+    public static Player1 player1 = new Player1(keyH);
     //Player2
-    static Player2 player2= new Player2(keyH);
+    public static Player2 player2= new Player2(keyH);
     //goalkeeper initialisation
-    static Goalkeeper keeper1 = new Goalkeeper1(keyH);
-    static Goalkeeper keeper2 = new Goalkeeper2(keyH);
+    public static Goalkeeper keeper1 = new Goalkeeper1(keyH);
+    public static Goalkeeper keeper2 = new Goalkeeper2(keyH);
     //initialise Ball
     public static Ball ball = null;
     //initialise Scoreborad
